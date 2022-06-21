@@ -25,7 +25,13 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Category Controller
-Route::get('/catagory/all',[CatagoryController::class, 'AllCat'])->name('all.cat');
+Route::get ('/catagory/all',[CatagoryController::class, 'AllCat'])->name('all.cat');
+Route::post('/catagory/add',[CatagoryController::class, 'AddCat'])->name('store.category');
+Route::get ('/catagory/edit/{id}',[CatagoryController::class, 'edit']);
+Route::post ('/catagory/update/{id}',[CatagoryController::class, 'update']);
+Route::get ('softdelete/catagory/{id}',[CatagoryController::class, 'softDelete']);
+Route::get ('catagory/restore/{id}',[CatagoryController::class, 'restore']);
+Route::get ('catagory/permanentDelete/{id}',[CatagoryController::class, 'permanentDelete']);
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
     Route::get('/dashboard', function () {
