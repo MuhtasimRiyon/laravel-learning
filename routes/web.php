@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\CatagoryController;
+use App\Http\Controllers\BrandController;
 use App\Models\User;
 
 /*
@@ -32,6 +33,18 @@ Route::post ('/catagory/update/{id}',[CatagoryController::class, 'update']);
 Route::get ('softdelete/catagory/{id}',[CatagoryController::class, 'softDelete']);
 Route::get ('catagory/restore/{id}',[CatagoryController::class, 'restore']);
 Route::get ('catagory/permanentDelete/{id}',[CatagoryController::class, 'permanentDelete']);
+
+// Brand Controller
+Route::get ('/brand/all',[BrandController::class, 'AllBrand'])->name('all.brand');
+Route::post('/brand/add',[BrandController::class, 'storeBrand'])->name('store.brand');
+Route::get ('/brand/edit/{id}',[BrandController::class, 'edit']);
+Route::post ('/brand/update/{id}',[BrandController::class, 'update']);
+Route::get ('/brand/delete/{id}',[BrandController::class, 'delete']);
+
+// multi image
+Route::get ('/multi/image',[BrandController::class, 'MultiPic'])->name('multi.image');
+Route::post('/multipic/add',[BrandController::class, 'storeImg'])->name('store.image');
+
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
     Route::get('/dashboard', function () {

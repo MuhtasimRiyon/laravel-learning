@@ -101,7 +101,7 @@
                                     <td> {{ $value -> created_at -> diffForHumans() }} </td>
                                     <td> 
                                         <a href="{{ url('catagory/restore/'.$value -> id) }}" class="btn btn-success"> Restore </a> 
-                                        <a href="{{ url('catagory/permanentDelete/'.$value -> id) }}" class="btn btn-danger"> Permanent Delete </a> 
+                                        <a href="{{ url('catagory/permanentDelete/'.$value -> id) }}" class="btn btn-danger"> Delete </a> 
                                     </td>
                                 </tr>
                                 @endforeach
