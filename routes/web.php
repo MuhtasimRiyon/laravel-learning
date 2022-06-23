@@ -49,9 +49,15 @@ Route::post('/multipic/add',[BrandController::class, 'storeImg'])->name('store.i
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
     Route::get('/dashboard', function () {
         
+        // this is for default dashboard 
         // $users = user::all(); // fatch data from database using eloquent ORM
-        $users = DB::table('users')->get(); //fatch data from database using query builder
+        //$users = DB::table('users')->get(); //fatch data from database using query builder
+        // return view('dashboard',compact('users'));
 
-        return view('dashboard',compact('users'));
+        // this is for template dashboard 
+        return view('admin.index');
+
     })->name('dashboard');
 });
+
+Route::get ('/user/logout',[BrandController::class, 'logout'])->name('user.logout');

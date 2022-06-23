@@ -9,6 +9,10 @@ use Auth;
 
 class CatagoryController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
     public function AllCat(){
         $cat = Catagory::paginate(3);
         $trashCat = Catagory::onlyTrashed()->latest()->paginate(3);
