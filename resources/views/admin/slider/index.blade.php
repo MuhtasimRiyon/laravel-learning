@@ -16,59 +16,66 @@
                         </div>
                         @endif
                         <div class="card-header">
-                            All Brands
+                            All Slider
                         </div>
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">SL No</th>
-                                    <th scope="col">Brand Name</th>
-                                    <th scope="col">Brand Image</th>
-                                    <th scope="col">Created At</th>
+                                    <th scope="col">Slider title</th>
+                                    <th scope="col">Slider description</th>
+                                    <th scope="col">Slider image</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($brands as $value)
+                                @foreach($slider as $value)
                                 <tr>
-                                    <td scope="row"> {{ $brands->firstItem()+$loop->index }} </td>
-                                    <td> {{ $value->brand_name }} </td>
-                                    <td> <img src="{{ asset($value->brand_image) }}" style="height:100px; width:150px"> </td>
-                                    <td> {{ $value->created_at->diffForHumans() }} </td>
+                                    <td scope="row"> {{ $slider->firstItem()+$loop->index }} </td>
+                                    <td> {{ $value->title }} </td>
+                                    <td> {{ $value->description }} </td>
+                                    <td> <img src="{{ asset($value->image) }}" style="height:100px; width:150px"> </td>
                                     <td> 
-                                        <a href="{{ url('brand/edit/'.$value->id) }}" class="btn btn-info"> Edit </a> 
-                                        <a href="{{ url('brand/delete/'.$value->id) }}" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger"> Delete </a> 
+                                        <a href="{{ url('slider/edit/'.$value->id) }}" class="btn btn-info"> Edit </a> 
+                                        <a href="{{ url('slider/delete/'.$value->id) }}" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger"> Delete </a> 
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        {{ $brands->links() }}
+                        {{ $slider->links() }}
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-header">
-                            Add Brand
+                            Add Slider
                         </div>
                         <div class="card-body">
-                            <form action=" {{ route('store.brand') }} " method="POST" enctype="multipart/form-data">
+                            <form action=" {{ route('store.slider') }} " method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Brand Name</label>
-                                    <input type="text" name="brand_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    <label for="exampleInputEmail1">Add Title</label>
+                                    <input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                                     @error('brand_name')
                                         <span class="text-danger"> {{ $message }} </span>
                                     @enderror
 
                                     <div class="form-group">
-                                    <label for="exampleInputEmail1">Brand Image</label>
-                                    <input type="file" name="brand_image" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    <label for="exampleInputEmail1">Add description</label>
+                                    <textarea id="description" name="description" rows="5" cols="32">Add description </textarea>
+                                    @error('brand_image')
+                                        <span class="text-danger"> {{ $message }} </span>
+                                    @enderror
+
+                                    <div class="form-group">
+                                    <label for="exampleInputEmail1">Slider Image</label>
+                                    <input type="file" name="image" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                                     @error('brand_image')
                                         <span class="text-danger"> {{ $message }} </span>
                                     @enderror
                                 </div>
-                                <button type="submit" class="btn btn-primary">Add Brand</button>
+                                <button type="submit" class="btn btn-primary">Add Slider</button>
                             </form>
                         </div>
                     </div>

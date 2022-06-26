@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\CatagoryController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BrandController;
 use App\Models\User;
 
@@ -18,12 +19,19 @@ use App\Models\User;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+
+    // $brands = DB::table('brands')->get();
+    // return view('homepage',compact('brands'));
+    return redirect()->route('home');
 });
 
 Auth::routes();
 
+// Home Controller 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get ('/home/slider',[HomeController::class, 'homeSlider'])->name('home.slider');
+Route::post('/slider/add',[HomeController::class, 'storeSlider'])->name('store.slider');
 
 // Category Controller
 Route::get ('/catagory/all',[CatagoryController::class, 'AllCat'])->name('all.cat');
@@ -51,7 +59,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
         
         // this is for default dashboard 
         // $users = user::all(); // fatch data from database using eloquent ORM
-        //$users = DB::table('users')->get(); //fatch data from database using query builder
+        // $users = DB::table('users')->get(); //fatch data from database using query builder
         // return view('dashboard',compact('users'));
 
         // this is for template dashboard 
