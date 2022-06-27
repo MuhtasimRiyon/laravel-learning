@@ -30,8 +30,12 @@ Auth::routes();
 
 // Home Controller 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home/about-us', [App\Http\Controllers\HomeController::class, 'about_us'])->name('about_us');
 Route::get ('/home/slider',[HomeController::class, 'homeSlider'])->name('home.slider');
 Route::post('/slider/add',[HomeController::class, 'storeSlider'])->name('store.slider');
+Route::get ('/slider/edit/{id}',[HomeController::class, 'edit_slider']);
+Route::post ('/slider/update/{id}',[HomeController::class, 'update_slider']);
+Route::get ('/slider/delete/{id}',[HomeController::class, 'delete_slider']);
 
 // Category Controller
 Route::get ('/catagory/all',[CatagoryController::class, 'AllCat'])->name('all.cat');

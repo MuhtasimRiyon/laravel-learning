@@ -1,10 +1,10 @@
 <!-- side bar start  -->
 <ul class="list-unstyled components text-secondary">
     <li>
-        <a href="dashboard"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
     </li>
     <li>
-        <a href="{{ route('home.slider') }}"><i class="fas fa-file-alt"></i> Slider</a>
+        <a href="{{ route('home.slider') }}"><i class="fas fa-sliders-h"></i> Slider</a>
     </li>
     <li>
         <a href="{{ route('all.brand') }}"><i class="fab fa-product-hunt"></i> Brand</a>

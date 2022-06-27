@@ -36,6 +36,11 @@ class HomeController extends Controller
         return view('homepage',$data);
     }
 
+    public function about_us()
+    {
+        return view('aboutus');
+    }
+
     public function homeSlider()
     {
         $slider = slider::paginate(3);
@@ -70,6 +75,58 @@ class HomeController extends Controller
         ]);
 
         return Redirect()->back()->with('success','slider inserted successfully');
+    }
+
+    public function edit_slider($id){
+        $sliders = slider::find($id);
+        return view('admin.slider.edit',compact('sliders'));
+    }
+
+    public function update_slider(Request $request,$id){
+
+     
+            
+            $old_image = $request->old_image;
+            
+            $slider_image = $request->file('image');
+            
+            if($slider_image){
+                $name_gen = hexdec(uniqid());
+            $image_ext = strtolower($slider_image->getClientOriginalExtension());
+            $img_name = $name_gen.'.'.$image_ext;
+            $up_location = 'image/slider/';
+            $last_img = $up_location.$img_name;
+            $slider_image->move($up_location,$img_name);
+            
+            unlink($old_image);
+            
+            slider::find($id)->update([
+                'title'=>$request->slider_title,
+                'description'=>$request->slider_description,
+                'image'=>$last_img,
+            ]);
+            
+            return Redirect()->back()->with('success','Slider updated successfully');
+            
+        }else{
+
+            slider::find($id)->update([
+                'title'=>$request->slider_title,
+                'description'=>$request->slider_description,
+            ]);
+
+            return Redirect()->back()->with('success','Slider updated successfully');
+        }
+    }
+
+    public function delete_slider($id){
+
+        $image = slider::find($id);
+        $old_image = $image->image;
+        unlink($old_image);
+
+        slider::find($id)->delete();
+        return Redirect()->back()->with('success','Slider deleted successfully');
     }
 
 }

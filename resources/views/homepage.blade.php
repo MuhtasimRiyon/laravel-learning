@@ -49,6 +49,7 @@
 	<![endif]-->
         <!-- Begin Body Wrapper -->
         <div class="body-wrapper">
+            
             <!-- header start  -->
             @include('layouts.body.header')
             <!-- header end  -->
@@ -1780,7 +1781,7 @@
             <div class="container">
                     <div class="row">
                         <!-- Begin Li's Section Area -->
-                        <div class="col-lg-8">
+                        <div class="col-lg-12">
                             <div class="li-section-title">
                                 <h2>
                                     <span>Brands</span>
@@ -1790,9 +1791,9 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th scope="col">SL NO</th>
-                                        <th scope="col">Brand Name</th>
-                                        <th scope="col">Brand Image</th>
+                                        <th scope="col" width="10%">SL NO</th>
+                                        <th scope="col" width="45%">Brand Name</th>
+                                        <th scope="col" width="45%">Brand Image</th>
                                     </tr>
                                 </thead>
                                 <tbody>
